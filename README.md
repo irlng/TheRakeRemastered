@@ -1,2 +1,2 @@
 # TheRakeRemastered
-Basiclly a script for a game on roblox.
+This is basiclly an exploit script for supossedly kids game
