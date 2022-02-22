@@ -1,6 +1,5 @@
 local Player = game:GetService('Players')
 local speaker = Player.LocalPlayer
-local Space = game:GetService('Workspace')
 local ReplicatedS = game:GetService('ReplicatedStorage')
 local RunService = game:GetService('RunService')
 
@@ -9,7 +8,7 @@ local RunService = game:GetService('RunService')
 local function WaitModule(name)
 	local module = nil
 	while not module do
-		for i,v in ipairs(getloadedmodules()) do
+		for i,v in ipairs(getloadedmodules()) do 
 			if v.Name == name then
 				module = v
 				break
@@ -19,6 +18,18 @@ local function WaitModule(name)
 	end
 	return module
 end
+
+local function Format(Int)
+	return string.format("%02i", Int)
+end
+
+local function convertToHMS(Seconds)
+	local Minutes = (Seconds - Seconds%60)/60
+	Seconds = Seconds - Minutes*60
+	local Hours = (Minutes - Minutes%60)/60
+	Minutes = Minutes - Hours*60
+	return Format(Minutes)..":"..Format(Seconds)
+end	
 
 local M_H = nil
 
@@ -182,6 +193,8 @@ local function BuildingPoint(name, parent)
 end
 
 
+
+
 --RakeESP
 local RakeESP = coroutine.wrap(function()
 	local function ChangeText(text, parent)
@@ -195,7 +208,10 @@ local RakeESP = coroutine.wrap(function()
 		
 		while true do
 			if workspace:FindFirstChild(speaker.Name) then
-				
+				if not target:FindFirstChild('HumanoidRootPart') then
+					repeat task.wait() until target:FindFirstChild('HumanoidRootPart')
+				end
+
 				local Magnitude = (target.HumanoidRootPart.Position - speaker.Character.HumanoidRootPart.Position).Magnitude
 				local FinalDist = math.round(Magnitude * 10^0) * 10^-0
 				
@@ -217,7 +233,7 @@ local RakeESP = coroutine.wrap(function()
 	workspace.ChildAdded:Connect(function(c)
 		if c.Name == 'Rake' then
 			if not c:FindFirstChildWhichIsA('BillboardGui') then
-				DoRakeESP()
+				DoRakeESP(c)
 			end
 		end
 	end)
@@ -237,7 +253,22 @@ end)
 
 
 --Scrap ESP
-local ScarpESP = coroutine.wrap(function()
+local ScrapESP = coroutine.wrap(function()
+	
+	for _, v in ipairs(game:GetService("Workspace").Filter.ScrapSpawns:GetChildren()) do
+		v.ChildAdded:Connect(function(c)
+			local ScrapPart = c:WaitForChild('Scrap', 5)
+			local lvl = c:WaitForChild('LevelVal', 5)
+			
+			if ScrapPart and lvl and ScrapPart:IsDescendantOf(game:GetService("Workspace").Filter.ScrapSpawns) then
+				if not ScrapPart:FindFirstChild('Bilb') then
+					local Tittle = ScrapPoint(lvl.Value, ScrapPart)
+				end
+			end
+		end)
+	end
+	
+	
 	while true do
 		for _, v in pairs(game:GetService("Workspace").Filter.ScrapSpawns:GetDescendants()) do
 			if v.Name == "Scrap" then
@@ -247,7 +278,7 @@ local ScarpESP = coroutine.wrap(function()
 				end
 			end
 		end
-		wait(7)
+		wait(15)
 	end
 end)
 
@@ -303,6 +334,99 @@ local BuildingESP = coroutine.wrap(function()
 end)
 
 
+--TimerUI
+local TimerUI = coroutine.wrap(function()
+	local Timer = Instance.new("ScreenGui")
+	local Main = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local Time = Instance.new("TextLabel")
+	local Status = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+	local Status_2 = Instance.new("TextLabel")
+
+	Timer.Name = "Timer"
+	Timer.Parent = game.CoreGui
+	Timer.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Main.Name = "Main"
+	Main.Parent = Timer
+	Main.BackgroundColor3 = Color3.fromRGB(68, 68, 68)
+	Main.BorderSizePixel = 0
+	Main.Position = UDim2.new(0.442203254, 0, 0.0278787827, 0)
+	Main.Size = UDim2.new(0.114817686, 0, 0.0642424226, 0)
+
+	UICorner.CornerRadius = UDim.new(0.150000006, 0)
+	UICorner.Parent = Main
+
+	Time.Name = "Time"
+	Time.Parent = Main
+	Time.AnchorPoint = Vector2.new(0.5, 0.5)
+	Time.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Time.BackgroundTransparency = 1.000
+	Time.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Time.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
+	Time.Font = Enum.Font.Ubuntu
+	Time.Text = "000"
+	Time.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Time.TextScaled = true
+	Time.TextSize = 14.000
+	Time.TextStrokeTransparency = 0.000
+	Time.TextWrapped = true
+
+	Status.Name = "Status"
+	Status.Parent = Main	
+	Status.AnchorPoint = Vector2.new(0.5, 0)
+	Status.BackgroundColor3 = Color3.fromRGB(68, 68, 68)
+	Status.BorderSizePixel = 0
+	Status.Position = UDim2.new(0.5, 0, 0.99000001, 0)
+	Status.Size = UDim2.new(0.5, 0, 0.400000006, 0)
+
+	UICorner_2.CornerRadius = UDim.new(0.150000006, 0)
+	UICorner_2.Parent = Status
+
+	Status_2.Name = "Status"
+	Status_2.Parent = Status
+	Status_2.AnchorPoint = Vector2.new(0.5, 0.5)
+	Status_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Status_2.BackgroundTransparency = 1.000
+	Status_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Status_2.Size = UDim2.new(1, 0, 1, 0)
+	Status_2.Font = Enum.Font.Ubuntu
+	Status_2.Text = "nil"
+	Status_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Status_2.TextScaled = true
+	Status_2.TextSize = 14.000
+	Status_2.TextStrokeTransparency = 0.000
+	Status_2.TextWrapped = true	
+	
+	local Timer = game:GetService("ReplicatedStorage").Timer
+	local Night = game:GetService("ReplicatedStorage").Night
+	
+	Timer.Changed:Connect(function(value)
+		if value > 10 then
+			local timer = convertToHMS(value)
+			Time.Text = timer
+			if Night.Value == true then
+				Status_2.Text = 'Night'
+			else
+				Status_2.Text = 'Day'
+			end
+			Time.TextColor3 = Color3.fromRGB(255, 255, 255)
+		elseif value > 0 and value < 10 then
+			local timer = convertToHMS(value)
+			Time.Text = timer
+			if Night.Value == true then
+				Status_2.Text = 'Night'
+			else
+				Status_2.Text = 'Day'
+			end
+			Time.TextColor3 = Color3.fromRGB(221, 0, 0)
+		elseif value == 0 then
+			Time.Text = '00:00'
+		end
+	end)
+end)
+
 
 --InfStamina
 --[[local InfStamina = coroutine.wrap(function()
@@ -340,7 +464,8 @@ end)]]--
 --Calling
 
 RakeESP()
-ScarpESP()
+ScrapESP()
 GunESP()
 BuildingESP()
+TimerUI()
 --InfStamina()
