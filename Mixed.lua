@@ -126,8 +126,6 @@ UIAspectRatioConstraint_6.AspectRatio = 1.668
 print("Check For Nigga 1")
 
 -------
-local f 
-local l
 
 
 Full.MouseButton1Click:Connect(function()
