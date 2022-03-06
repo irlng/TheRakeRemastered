@@ -5,9 +5,11 @@ local Players  = game:GetService('Players')
 local speaker = Players.LocalPlayer
 local county = 0
 local mandela = false
+print("check for retard")
 
 if speaker.Character == nil then
 	repeat 
+		print(county)
 		task.wait(1)
 		county = county + 1
 		if county >= 5 and mandela == false then
