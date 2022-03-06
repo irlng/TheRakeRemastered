@@ -1,3 +1,4 @@
+print("Check For Nigga")
 local ConfirmationPrompt = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local Frame_2 = Instance.new("Frame")
@@ -122,7 +123,7 @@ UIAspectRatioConstraint_5.AspectRatio = 1.980
 
 UIAspectRatioConstraint_6.Parent = Frame
 UIAspectRatioConstraint_6.AspectRatio = 1.668
-
+print("Check For Nigga 1")
 
 -------
 local f 
@@ -132,11 +133,12 @@ local l
 f = Full.MouseButton1Click:Connect(function()
 	ConfirmationPrompt:Destroy()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheNewRake.lua"))()
-	
+	print("Check For Nigga 2")
 end)
 
 l = Lite.MouseButton1Click:Connect(function()
 	ConfirmationPrompt:Destroy()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/Lite%20Obfuscated.lua"))()
+	print("Check For Nigga 2*")
 	
 end)
