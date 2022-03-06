@@ -130,13 +130,13 @@ local f
 local l
 
 
-f = Full.MouseButton1Click:Connect(function()
+Full.MouseButton1Click:Connect(function()
 	ConfirmationPrompt:Destroy()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheNewRake.lua"))()
 	print("Check For Nigga 2")
 end)
 
-l = Lite.MouseButton1Click:Connect(function()
+Lite.MouseButton1Click:Connect(function()
 	ConfirmationPrompt:Destroy()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/Lite%20Obfuscated.lua"))()
 	print("Check For Nigga 2*")
