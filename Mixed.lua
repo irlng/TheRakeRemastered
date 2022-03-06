@@ -1,4 +1,4 @@
-print("Check For Nigga")
+print("Script Executed Checks [true]")
 local ConfirmationPrompt = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local Frame_2 = Instance.new("Frame")
@@ -21,6 +21,7 @@ ConfirmationPrompt.Name = "ConfirmationPrompt"
 ConfirmationPrompt.Parent = game.CoreGui
 ConfirmationPrompt.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ConfirmationPrompt.ResetOnSpawn = false
+ConfirmationPrompt.Enabled = true
 
 Frame.Parent = ConfirmationPrompt
 Frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -123,20 +124,32 @@ UIAspectRatioConstraint_5.AspectRatio = 1.980
 
 UIAspectRatioConstraint_6.Parent = Frame
 UIAspectRatioConstraint_6.AspectRatio = 1.668
-print("Check For Nigga 1")
+
+print("Gui Launched Check [true]")
 
 -------
 
-
 Full.MouseButton1Click:Connect(function()
+	print("Clicked Full")
+	wait(.1)
 	ConfirmationPrompt:Destroy()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheNewRake.lua"))()
-	print("Check For Nigga 2")
+	coroutine.wrap(function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheNewRake.lua"))()
+		
+	end)
+	
+	print("Coroutine launched")
+	
 end)
 
 Lite.MouseButton1Click:Connect(function()
+	print("Clicked Lite")
+	wait(.1)
 	ConfirmationPrompt:Destroy()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/Lite%20Obfuscated.lua"))()
-	print("Check For Nigga 2*")
+	coroutine.wrap(function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/Lite%20Obfuscated.lua"))()
+	end)
+	
+	print("Coroutine launched")
 	
 end)
