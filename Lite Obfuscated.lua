@@ -3,20 +3,7 @@ local speaker = Players.LocalPlayer
 local county = 0
 local mandela = false
 
-if speaker.Character == nil then
-	repeat 
-		task.wait(1)
-		county = county + 1
-		if county >= 5 and mandela == false then
-			mandela = true
-			game:GetService("StarterGui"):SetCore("SendNotification",{
-				Title = "Notification", 
-				Text = "Please use the script after spawning to the game",
-				Duration = 10
-			})
-		end
-	until speaker.Character ~= nil
-end
+print("Lite Launched [true]")
 
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/LiteGui.lua"))()
 local Stamina, NoFall, FullBright, NoFog, MapBorders, RakeESP, BuildingESP, FlareESP, ScrapESP, TimeGUI, PlayersESP, SupplyESP, Hide, Main = lib.create()
