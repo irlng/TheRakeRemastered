@@ -5,23 +5,8 @@ local Players  = game:GetService('Players')
 local speaker = Players.LocalPlayer
 local county = 0
 local mandela = false
-print("check for retard")
 
-if speaker.Character == nil then
-	repeat 
-		print(county)
-		task.wait(1)
-		county = county + 1
-		if county >= 5 and mandela == false then
-			mandela = true
-			game:GetService("StarterGui"):SetCore("SendNotification",{
-				Title = "Notification", 
-				Text = "Please use the script after spawning to the game",
-				Duration = 10
-			})
-		end
-	until speaker.Character ~= nil
-end
+print("Full Version Launched")
 
 --[[--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--
 Constant
