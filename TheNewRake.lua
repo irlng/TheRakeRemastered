@@ -3,8 +3,6 @@ Checking
 --]]--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--
 local Players  = game:GetService('Players')
 local speaker = Players.LocalPlayer
-local county = 0
-local mandela = false
 
 print("Full Version Launched")
 
