@@ -135,11 +135,11 @@ Full.MouseButton1Click:Connect(function()
 	
 	coroutine.wrap(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheNewRake.lua"))()
-		
+		print("Coroutine Checked")
 	end)
 	
 	wait(1)
-	ConfirmationPrompt:Destroy()
+	ConfirmationPrompt.Enabled = false
 	
 	print("Coroutine launched")
 	
@@ -151,10 +151,11 @@ Lite.MouseButton1Click:Connect(function()
 	
 	coroutine.wrap(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/Lite%20Obfuscated.lua"))()
+		print("Coroutine Checked 1")
 	end)
 	
 	wait(1)
-	ConfirmationPrompt:Destroy()
+	ConfirmationPrompt.Enabled = false
 
 	
 	print("Coroutine launched")
